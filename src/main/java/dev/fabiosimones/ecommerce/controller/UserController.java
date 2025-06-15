@@ -33,4 +33,12 @@ public class UserController {
                 ResponseEntity.ok(user.get()) :
                 ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<UserEntity> deleteById(@PathVariable("userId")UUID userId){
+        var deleted = userService.deleteById(userId);
+        return deleted ?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.notFound().build();
+    }
 }
