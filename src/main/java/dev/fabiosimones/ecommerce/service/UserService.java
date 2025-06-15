@@ -7,6 +7,9 @@ import dev.fabiosimones.ecommerce.repository.BillingAddressRepository;
 import dev.fabiosimones.ecommerce.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -32,5 +35,9 @@ public class UserService {
         user.setBillingAddress(savedBillingAddress);
 
         return userRepository.save(user);
+    }
+
+    public Optional<UserEntity> findById(UUID userId) {
+        return userRepository.findById(userId);
     }
 }
