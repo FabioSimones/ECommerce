@@ -1,9 +1,6 @@
 package dev.fabiosimones.ecommerce.controller;
 
-import dev.fabiosimones.ecommerce.controller.dto.ApiResponse;
-import dev.fabiosimones.ecommerce.controller.dto.CreateOrderDTO;
-import dev.fabiosimones.ecommerce.controller.dto.OrderSummaryDTO;
-import dev.fabiosimones.ecommerce.controller.dto.PaginationResponseDTO;
+import dev.fabiosimones.ecommerce.controller.dto.*;
 import dev.fabiosimones.ecommerce.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,5 +34,14 @@ public class OrderController {
                 new PaginationResponseDTO(response.getNumber(), response.getSize(),
                         response.getTotalElements(), response.getTotalPages())
         ));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponseDTO> findById(@PathVariable("orderId")Long orderId){
+        var order = orderService.findById(orderId);
+
+        return order.isPresent() ?
+                ResponseEntity.ok(OrderResponseDTO.fromEntity(order.get())) :
+                ResponseEntity.notFound().build();
     }
 }
