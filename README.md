@@ -80,3 +80,9 @@
   </ul>  
 </ul>
 
+<p>Ao completar o projeto Sistema de E-commerce, foi possivel adquirir uma experiência prática na configuração de um projeto Spring Boot, 
+ configuração de um banco de dados, definição de entidades JPA, criação de repositórios, implementação de uma camada de serviço e 
+ exposição de APIs RESTful para operações CRUD e relacionamentos entre entidades.</p>
+
+ <p>Este projeto ajudou a me capacitar com o conhecimento e as habilidades necessárias para construir e gerenciar sistemas backend 
+  robustos usando Spring Boot e Spring Data JPA.</p>
