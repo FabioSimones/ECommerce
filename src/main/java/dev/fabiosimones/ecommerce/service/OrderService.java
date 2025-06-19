@@ -2,12 +2,15 @@ package dev.fabiosimones.ecommerce.service;
 
 import dev.fabiosimones.ecommerce.controller.dto.CreateOrderDTO;
 import dev.fabiosimones.ecommerce.controller.dto.OrderItemDTO;
+import dev.fabiosimones.ecommerce.controller.dto.OrderSummaryDTO;
 import dev.fabiosimones.ecommerce.entities.*;
 import dev.fabiosimones.ecommerce.exception.CreateOrderException;
 import dev.fabiosimones.ecommerce.repository.OrderItemRepository;
 import dev.fabiosimones.ecommerce.repository.OrderRepository;
 import dev.fabiosimones.ecommerce.repository.ProductRepository;
 import dev.fabiosimones.ecommerce.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -84,5 +87,14 @@ public class OrderService {
 
     private UserEntity validateUser(CreateOrderDTO dto){
         return userRepository.findById(dto.userId()).orElseThrow(() -> new CreateOrderException("User not found."));
+    }
+
+    public Page<OrderSummaryDTO> findAll(Integer page, Integer pageSize) {
+        return orderRepository.findAll(PageRequest.of(page, pageSize)).map(entity -> new OrderSummaryDTO(
+                entity.getOrderId(),
+                entity.getOrderDate(),
+                entity.getUser().getUserId(),
+                entity.getTotal()
+        ));
     }
 }
