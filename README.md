@@ -86,3 +86,7 @@
 
  <p>Este projeto ajudou a me capacitar com o conhecimento e as habilidades necessárias para construir e gerenciar sistemas backend 
   robustos usando Spring Boot e Spring Data JPA.</p>
+
+  ## Diagrama UML
+  ![image](https://github.com/user-attachments/assets/86b222cc-5b91-48b7-b13c-ad015e7c7e9a)
+
